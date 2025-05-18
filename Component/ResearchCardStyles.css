@@ -1,0 +1,33 @@
+/* 假设使用 Gotham 字体 */
+@font-face {
+  font-family: 'GothamBlack';
+  src: url('/fonts/Gotham-Black.otf');
+}
+
+@font-face {
+  font-family: 'GothamLight';
+  src: url('/fonts/Gotham-Light.otf');
+}
+
+@font-face {
+  font-family: 'GothamBook';
+  src: url('/fonts/Gotham-Book.otf');
+}
+
+@font-face {
+  font-family: 'GothamExLight';
+  src: url('/fonts/Gotham-ExtraLight.otf');
+}
+
+/* 全局样式 */
+body {
+  font-family: 'GothamBook', sans-serif;
+}
+
+.research-card {
+  transition: transform 0.3s ease;
+}
+
+.research-card:hover {
+  transform: translateY(-5px);
+}  
