@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Image } from "@heroui/image"; // 假设这个库能正常工作
+import NextImage from 'next/image'; // 你可以叫它 NextImage 或其他名字以避免冲突
 import { ResearchItem } from "@/lib/api";
 
  import ReadMoreButton from "./ReadMoreButton"; 
@@ -23,7 +23,7 @@ const ResearchCard = ({ area }: { area: ResearchItem }) => {
       {/* 图片区域 - 根据图片，图片在标题和描述下面 */}
       <div className="image-container w-full h-[250px] bg-gray-800 mb-4 flex items-center justify-center rounded">
         {/* 你可以使用 @heroui/image 或者标准的 <img>标签 */}
-        <Image
+        <NextImage
           src={area.imageUrl || "/placeholder-image.svg"} // 提供一个备用图片
           alt={area.title}
           width={330} // 容器宽度减去一些padding
