@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroui/link": "^2.2.16",
     "heroui-cli": "^1.2.3",
     "next": "15.3.2",
     "react": "^19.0.0",

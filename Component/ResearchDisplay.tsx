@@ -1,91 +1,98 @@
 "use client";
-
 import { useState } from "react";
-import NextImage from 'next/image'; // 你可以叫它 NextImage 或其他名字以避免冲突
-import { ResearchItem } from "@/lib/api";
+import NextImage from 'next/image';
+import { ResearchItem } from "@/lib/api"; // Assuming this path is correct
+import { Link } from "@heroui/link";
 
- import ReadMoreButton from "./ReadMoreButton"; 
- import ArrowRightIcon from "@/components/icons/ArrowRightIcon"; 
- import ArrowLeftIcon from "@/components/icons/ArrowLeftIcon";
+// Import new Icon components
+import ChevronLeftIcon from "@/Component/icons/ChevronLeftIcon";
+import ChevronRightIcon from "@/Component/icons/ChevronRightIcon";
+import ArrowRightIconSmall from "@/Component/icons/ArrowRightIconSmall"; // For "Learn More"
 
- const ReadMoreButton = ({ href, children, className }: { href: string, children: React.ReactNode, className?: string }) => (
-  <a href={href} className={`inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-transparent hover:bg-white hover:text-black transition-colors duration-300 ${className}`}>
+// Import new UI component
+import CircleIconButton from "@/Component/CircleIconButton";
+
+// Updated ReadMoreButton to be outlined and match image
+const ReadMoreButton = ({ href, children, className }: { href: string, children: React.ReactNode, className?: string }) => (
+  <a
+    href={href}
+    target="_blank" // Good practice for external links
+    rel="noopener noreferrer" // Security for target="_blank"
+    className={`
+      inline-flex items-center justify-center px-6 py-2.5 // Adjusted padding
+      border-2 border-neutral-400     // Lighter border, consistent with card
+      rounded-full
+      text-sm font-medium text-neutral-200 // Lighter text
+      bg-transparent                   // Transparent background
+      hover:bg-white hover:text-black  // Hover effect from image
+      transition-colors duration-300
+      focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-sky-500
+      ${className}
+    `}
+  >
     {children}
   </a>
 );
-const ArrowRightIcon = () => <span className="ml-2">→</span>;
-const ArrowLeftIcon = () => <span className="mr-2">←</span>;
 
-// 1. ResearchCard 组件 (单个卡片)
+
+// 1. ResearchCard Component (Single Card) - Adjusted to match image layout
 const ResearchCard = ({ area }: { area: ResearchItem }) => {
   return (
-    <div className="research-card bg-black border border-gray-700 w-[380px] h-[545px] flex flex-col shrink-0 p-6 text-white rounded-md">
-      {/* 图片区域 - 根据图片，图片在标题和描述下面 */}
-      <div className="image-container w-full h-[250px] bg-gray-800 mb-4 flex items-center justify-center rounded">
-        {/* 你可以使用 @heroui/image 或者标准的 <img>标签 */}
+    <div className="research-card bg-black border border-neutral-700 w-[380px] h-[545px] flex flex-col shrink-0 p-6 text-white rounded-lg shadow-md">
+      {/* Image Area - Now at the top */}
+      <div className="image-container w-full h-[350px] bg-neutral-800 mb-6 flex items-center justify-center rounded-md overflow-hidden">
         <NextImage
-          src={area.imageUrl || "/placeholder-image.svg"} // 提供一个备用图片
-          alt={area.title}
-          width={330} // 容器宽度减去一些padding
-          height={250}
-          className="object-contain" // 或 object-cover, 取决于你的图片
-        />
-        {/* 如果不用 @heroui/image:
-        <img
           src={area.imageUrl || "/placeholder-image.svg"}
           alt={area.title}
-          className="object-contain w-full h-full"
-        /> */}
+          width={330}
+          height={350}
+          className="object-cover w-full h-full"
+        />
       </div>
-
-      {/* 文字+图标区域 */}
+      {/* Text + Icon Area */}
       <div className="flex flex-col flex-grow">
         <div className="flex justify-between items-start mb-3">
-          <h3 className="font-gotham-book text-xl font-semibold"> {/* 根据图片调整字体 */}
+          <h3 className="font-gotham-book text-xl font-semibold text-neutral-100">
             {area.title}
           </h3>
-          <div className="w-6 h-6 flex items-center justify-center shrink-0 ml-2">
-            {area.icon || <div className="w-5 h-5 border border-gray-500" /> /* 占位符图标 */}
+          <div className="w-10 h-10 flex items-center justify-center shrink-0 ml-3 mt-1 border border-neutral-600 rounded-sm p-0.5">
+            {area.icon || <div className="w-40px h-40px bg-neutral-700" />}
           </div>
         </div>
-        <p className="font-gotham-exlight text-sm text-gray-400 mb-6 leading-relaxed h-[60px] overflow-hidden"> {/* 限制高度并允许溢出隐藏 */}
+        <p className="font-gotham-exlight text-sm text-neutral-400 mb-6 leading-relaxed h-[60px] overflow-hidden text-ellipsis">
           {area.description}
         </p>
       </div>
 
-      {/* Learn More 按钮 */}
-      <div className="mt-auto"> {/* 将按钮推到底部 */}
-        <ReadMoreButton
+      {/* Learn More Button - MODIFIED SECTION */}
+      {/* The parent div for the button. 
+          We ensure it takes full width, and then center the button within it.
+          Adding 'text-center' is one way to center an inline-flex element,
+          or you can make this div a flex container.
+      */}
+      <div className="mt-auto pt-4 border-t border-neutral-800 text-center"> {/* Added text-center to center the inline-flex button */}
+        <Link
           href={area.link}
-          className="w-full border-2 border-white text-white font-gotham-exlight text-base hover:bg-white hover:text-black"
+          className="inline-flex items-center justify-center px-6 py-3 border border-white text-sm font-medium rounded-4xl text-white hover:bg-white hover:text-black transition-colors duration-200 "
         >
-          Learn More
-          <ArrowRightIcon />
-        </ReadMoreButton>
+          LEARN MORE
+          <ArrowRightIconSmall className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+        </Link>
       </div>
+      {/* END OF MODIFIED SECTION */}
+
     </div>
   );
 };
 
-// 2. ResearchSection 组件 (整个区域，包括标题、描述、滑动卡片)
+
+// 2. ResearchSection Component
 export const ResearchSection = ({ researchItems }: { researchItems: ResearchItem[] }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const itemsPerPage = 3; // 图片中显示3个
+  const itemsPerPage = 3;
   const totalSlides = Math.ceil(researchItems.length / itemsPerPage);
 
-  const handleNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % totalSlides);
-  };
-
-  const handlePrev = () => {
-    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-  };
-
-  const visibleItems = researchItems.slice(
-    currentSlide * itemsPerPage,
-    (currentSlide + 1) * itemsPerPage
-  );
-
+  console.log("Research Items:", researchItems); // Debugging line to check items
   if (!researchItems || researchItems.length === 0) {
     return (
       <section className="py-12 md:py-20 bg-black text-white text-center">
@@ -95,58 +102,71 @@ export const ResearchSection = ({ researchItems }: { researchItems: ResearchItem
   }
 
   return (
-    <section className="py-12 md:py-20 bg-black text-white">
+    <section className="py-16 md:py-24 bg-black text-white">
       <div className="container mx-auto px-4">
-        {/* 标题 */}
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-6">RESEARCH</h2>
-        
-        {/* 描述 */}
-        <p className="text-base md:text-lg text-gray-400 text-center mb-12 max-w-3xl mx-auto">
-          Our Lab Focuses On Advancing Building Performance, Thermal Comfort, And Sustainability In The Context Of Changing Urban Environments And Climate Dynamics.
-        </p>
-        
-        {/* 卡片容器和导航 */}
-        <div className="relative">
-          {/* 左箭头 */}
-          {totalSlides > 1 && (
-            <button
-              onClick={handlePrev}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors duration-300"
-              aria-label="Previous slide"
-            >
-              <ArrowLeftIcon /> {/* 或者使用SVG图标 < */}
-            </button>
-          )}
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 uppercase tracking-wider text-neutral-100">
+          RESEARCH
+        </h2>
 
-          {/* 卡片列表 - 使用 flex 和 gap 来排列 */}
-          <div className="flex gap-6 md:gap-8 justify-center overflow-hidden px-8 md:px-16"> {/* px 用于给箭头留空间 */}
-            {/* 
-              这里我们只渲染当前可见的卡片。
-              如果你想要一个平滑的 CSS transform 滑动效果，
-              你需要渲染所有卡片，并使用 transform: translateX。
-              对于分页效果，只渲染可见的卡片更简单。
-            */}
-            {visibleItems.map((item) => (
-              <ResearchCard key={item.id} area={item} />
-            ))}
-            {/* 如果 visibleItems 不足 itemsPerPage，可以添加占位符来保持布局 */}
-            {Array(itemsPerPage - visibleItems.length).fill(null).map((_, index) => (
-              <div key={`placeholder-${index}`} className="w-[380px] shrink-0" aria-hidden="true" />
-            ))}
+        <p className="text-base md:text-lg text-neutral-400 text-center mb-16 max-w-3xl mx-auto font-gotham-exlight leading-relaxed">
+          Our Lab focuses on advancing Building Performance, Thermal Comfort, and Sustainability in the context of changing urban environments and cimate dynamics.
+        </p>
+
+        <div className="relative">
+          <div className="flex items-center justify-center">
+            <div className="w-full max-w-[1200px] overflow-hidden">
+              <div
+                className="flex gap-6 md:gap-2 transition-transform duration-500 ease-in-out"
+                style={{
+                  transform: `translateX(-${currentSlide * (100 / totalSlides)}%)`,
+                  width: `${totalSlides * 100}%`
+                }}
+              >
+                {researchItems.map((item, index) => (
+                  <div
+                    key={item.id || index}
+                    className="w-full min-w-0"
+                    style={{ flexBasis: `${100 / (itemsPerPage * totalSlides)}%` }}
+                  >
+                    <ResearchCard area={item} />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* 右箭头 */}
           {totalSlides > 1 && (
-            <button
-              onClick={handleNext}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors duration-300"
-              aria-label="Next slide"
-            >
-              <ArrowRightIcon /> {/* 或者使用SVG图标 > */}
-            </button>
+            <>
+              <CircleIconButton
+                onClick={() => setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides)}
+                ariaLabel="Previous research items"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-10"
+              >
+                <ChevronLeftIcon className="w-6 h-6" strokeWidth={3} />
+              </CircleIconButton>
+
+              <CircleIconButton
+                onClick={() => setCurrentSlide((prev) => (prev + 1) % totalSlides)}
+                ariaLabel="Next research items"
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-10"
+              >
+                <ChevronRightIcon className="w-6 h-6" strokeWidth={3} />
+              </CircleIconButton>
+            </>
           )}
         </div>
       </div>
     </section>
   );
 };
+
+// Example usage (assuming you have a Page component or similar)
+// export default function MyPage() {
+//   const mockResearchItems: ResearchItem[] = [
+//     { id: '1', title: 'Building Performance', description: 'Optimizing Energy Efficiency And Environmental Performance Through Innovative Design Strategies.', imageUrl: 'https://via.placeholder.com/330x250/4B5563/FFFFFF?text=Building+Perf', link: '#', icon: null },
+//     { id: '2', title: 'Climate Adaptation', description: 'Developing Solutions For Buildings And Cities To Adapt To Future Climate Challenges.', imageUrl: 'https://via.placeholder.com/330x250/4B5563/FFFFFF?text=Climate+Adapt', link: '#', icon: null },
+//     { id: '3', title: 'AI & Machine Learning', description: 'Applying Advanced Computational Methods To Optimize Building Design And Operation.', imageUrl: 'https://via.placeholder.com/330x250/4B5563/FFFFFF?text=AI+ML', link: '#', icon: null },
+//     { id: '4', title: 'Sustainable Materials', description: 'Researching and implementing eco-friendly materials for construction.', imageUrl: 'https://via.placeholder.com/330x250/4B5563/FFFFFF?text=Materials', link: '#', icon: null },
+//   ];
+//   return <ResearchSection researchItems={mockResearchItems} />;
+// }
