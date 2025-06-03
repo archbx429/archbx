@@ -76,7 +76,11 @@ export default function TeamGridPage() {
             onMouseLeave={() => setHovered(null)}
           >
             <img src={m.image ?? ""} alt={m.name} className={styles.avatar} />
-            {/* <div className={styles.name}>{m.name}<br />{m.role}</div> */}
+            <div className={styles.name}>
+              {m.name}
+              <br />
+              {m.role}
+            </div>
             {hovered === idx && (
               <div className={styles.card}>
                 <div className={styles.cardName}>{m.name}</div>
