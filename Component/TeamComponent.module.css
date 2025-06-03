@@ -1,0 +1,127 @@
+.container {
+  display: flex;
+  align-items: flex-start; /* 顶部对齐 */
+  padding-top: 40px;    /* 上下内边距 */
+  padding-bottom: 40px;
+  gap: 50px; /* 图片和文字区域的间距 */
+  max-width: 1200px; /* 限制最大宽度，使其居中（可选） */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.imageContainer {
+  width: 600px;      /* 图片区域宽度 (可调整) */
+  height: 450px;     /* 图片区域高度 (可调整) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;    /* 如果使用真实图片，确保图片不溢出 */
+  flex-shrink: 0;    /* 防止图片容器在 flex 布局中被压缩 */
+  border: 1px solid #ddd; /* 可选：给占位符一个边框 */
+  background: #ededed; /* 可选：给图片区域一个浅色背景 */
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 确保图片覆盖整个区域且不变形 */
+}
+
+.imagePlaceholderText {
+  color: #777;
+  font-size: 1.2rem;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* 只让内容从上往下排列 */
+  height: 450px; /* 保持与图片一致 */
+  align-items: flex-start; /* 内容左对齐 */
+  padding-right: 20px; /* 给右侧内容一些右边距，避免贴边 */
+  color: #fff; /* 新增：设置内容为白色 */
+  /* justify-content: center; */ /* 垂直居中内容 */
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 24px;
+  color: #fff; /* 标题为白色，更突出 */
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #ededed; /* 描述为浅灰，更清晰 */
+  margin-bottom: 32px;
+}
+
+.teamButton {
+  margin-top: auto; /* 让按钮推到底部 */
+}
+
+/* 响应式调整：在小屏幕上，可以将布局改为垂直堆叠 */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .imageContainer {
+    width: 90%;
+    max-width: 350px;
+    height: auto;
+    aspect-ratio: 3/4;
+  }
+
+  .contentContainer {
+    align-items: center;
+    text-align: center;
+    padding-right: 0;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+}
+
+/* 在更小屏幕上的调整（如之前的 768px 以下）可以合并到上述媒体查询中，或根据需要单独处理 */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center; /* 在堆叠时居中对齐 */
+    gap: 30px;
+    padding-left: 20px; /* 小屏幕时调整左右内边距 */
+    padding-right: 20px;
+  }
+
+  .imageContainer {
+    margin-left: 0; /* 在堆叠时移除左边距，使其居中 */
+    width: 90%;     /* 图片宽度适应屏幕 */
+    max-width: 600px; /* 但不超过设定的最大值 */
+    height: 450px;   /* 高度自动，或设定一个合适的移动端高度 */
+    aspect-ratio: 3/4; /* 保持宽高比 */
+  }
+
+  .contentContainer {
+    align-items: center; /* 内容也居中对齐 */
+    text-align: center;  /* 文本居中 */
+    padding-right: 0;
+  }
+
+  .title {
+    font-size: 2.5rem; /* 适当减小标题字号 */
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+}

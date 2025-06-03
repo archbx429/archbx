@@ -5,12 +5,12 @@ import { ResearchItem } from "@/lib/api"; // Assuming this path is correct
 import { Link } from "@heroui/link";
 
 // Import new Icon components
-import ChevronLeftIcon from "@/Component/icons/ChevronLeftIcon";
-import ChevronRightIcon from "@/Component/icons/ChevronRightIcon";
-import ArrowRightIconSmall from "@/Component/icons/ArrowRightIconSmall"; // For "Learn More"
+import ChevronLeftIcon from "@/Component/ResearchCard/icons/ChevronLeftIcon";
+import ChevronRightIcon from "@/Component/ResearchCard/icons/ChevronRightIcon";
+import ArrowRightIconSmall from "@/Component/ResearchCard/icons/ArrowRightIconSmall"; // For "Learn More"
 
 // Import new UI component
-import CircleIconButton from "@/Component/CircleIconButton";
+import CircleIconButton from "@/Component/ResearchCard/CircleIconButton";
 
 // Updated ReadMoreButton to be outlined and match image
 const ReadMoreButton = ({ href, children, className }: { href: string, children: React.ReactNode, className?: string }) => (
@@ -42,7 +42,7 @@ const ResearchCard = ({ area }: { area: ResearchItem }) => {
       {/* Image Area - Now at the top */}
       <div className="image-container w-full h-[350px] bg-neutral-800 mb-6 flex items-center justify-center rounded-md overflow-hidden">
         <NextImage
-          src={area.imageUrl || "/placeholder-image.svg"}
+          src={area.image || "/placeholder-image.svg"}
           alt={area.title}
           width={330}
           height={350}
@@ -163,10 +163,10 @@ export const ResearchSection = ({ researchItems }: { researchItems: ResearchItem
 // Example usage (assuming you have a Page component or similar)
 // export default function MyPage() {
 //   const mockResearchItems: ResearchItem[] = [
-//     { id: '1', title: 'Building Performance', description: 'Optimizing Energy Efficiency And Environmental Performance Through Innovative Design Strategies.', imageUrl: 'https://via.placeholder.com/330x250/4B5563/FFFFFF?text=Building+Perf', link: '#', icon: null },
-//     { id: '2', title: 'Climate Adaptation', description: 'Developing Solutions For Buildings And Cities To Adapt To Future Climate Challenges.', imageUrl: 'https://via.placeholder.com/330x250/4B5563/FFFFFF?text=Climate+Adapt', link: '#', icon: null },
-//     { id: '3', title: 'AI & Machine Learning', description: 'Applying Advanced Computational Methods To Optimize Building Design And Operation.', imageUrl: 'https://via.placeholder.com/330x250/4B5563/FFFFFF?text=AI+ML', link: '#', icon: null },
-//     { id: '4', title: 'Sustainable Materials', description: 'Researching and implementing eco-friendly materials for construction.', imageUrl: 'https://via.placeholder.com/330x250/4B5563/FFFFFF?text=Materials', link: '#', icon: null },
+//     { id: '1', title: 'Building Performance', description: 'Optimizing Energy Efficiency And Environmental Performance Through Innovative Design Strategies.', image: 'https://via.placeholder.com/330x250/4B5563/FFFFFF?text=Building+Perf', link: '#', icon: null },
+//     { id: '2', title: 'Climate Adaptation', description: 'Developing Solutions For Buildings And Cities To Adapt To Future Climate Challenges.', image: 'https://via.placeholder.com/330x250/4B5563/FFFFFF?text=Climate+Adapt', link: '#', icon: null },
+//     { id: '3', title: 'AI & Machine Learning', description: 'Applying Advanced Computational Methods To Optimize Building Design And Operation.', image: 'https://via.placeholder.com/330x250/4B5563/FFFFFF?text=AI+ML', link: '#', icon: null },
+//     { id: '4', title: 'Sustainable Materials', description: 'Researching and implementing eco-friendly materials for construction.', image: 'https://via.placeholder.com/330x250/4B5563/FFFFFF?text=Materials', link: '#', icon: null },
 //   ];
 //   return <ResearchSection researchItems={mockResearchItems} />;
 // }
