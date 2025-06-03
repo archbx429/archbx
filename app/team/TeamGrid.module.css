@@ -1,0 +1,73 @@
+/* TeamGrid.module.css */
+.teamPage {
+  background: #000;
+  min-height: 100vh;
+  color: #fff;
+  padding: 40px;
+}
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 32px;
+  text-align: left;
+  margin-left: 40px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4列，可根据需要调整 */
+  gap: 48px;
+  justify-items: center;
+  align-items: center;
+}
+.avatarWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: #222;
+  object-fit: cover;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+}
+.avatarWrapper:hover .avatar {
+  opacity: 1;
+}
+.name {
+  margin-top: 12px;
+  color: #ccc;
+  font-size: 1rem;
+  text-align: center;
+}
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 320px;
+  background: rgba(200,200,200,0.9);
+  color: #222;
+  transform: translate(-50%, -50%);
+  padding: 32px 24px;
+  border-radius: 8px;
+  z-index: 10;
+  font-size: 1.1rem;
+  font-weight: 500;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.25);
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.cardName {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.cardRole {
+  font-weight: bold;
+  margin-bottom: 16px;
+}
