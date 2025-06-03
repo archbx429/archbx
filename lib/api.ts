@@ -138,49 +138,52 @@ export async function getPublicationsData(): Promise<PublicationItem[]> {
 }
 
 export interface TeamMemberItem {
-    id: number;
-    name: string;
-    role?: string | null;
-    image?: string | null;
-    is_featured?: boolean;
-    width?: number | null;
-    height?: number | null;
+  id: number;
+  name: string;
+  role?: string;
+  image?: string;
+  email?: string;
+  research?: string;
+  experience?: string;
 }
 
 export async function getTeamMembersData(): Promise<TeamMemberItem[]> {
-    const apiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
-    if (!apiUrl) {
-        console.error("WordPress API URL is not configured in .env.local");
-        return [];
-    }
-    const fetchUrl = `${apiUrl}/wp/v2/member`
-    try{
-        const res = await fetch(fetchUrl);
-        if (!res.ok) {
-            console.error(`Failed to fetch team members: ${res.status} ${res.statusText}`);
-            return [];
-        }
-        const data:WordPressPost[] = await res.json();
-        const teamMembers: TeamMemberItem[] = data.map((item) => {
-            const acfImageUrl = item.acf?.member_image?.url || "https://www.cribelab.org/wp-content/uploads/2025/02/placeholder-1.svg";
-            const width = item.acf?.member_image?.width || null;
-            const height = item.acf?.member_image?.height || null;
-            return {
-                id: item.id,
-                name: item.acf?.name || 'Unknown Member',
-                role: item.acf?.role || null,
-                image: acfImageUrl || null,
-                is_featured: item.acf?.is_featured || false,
-                width: width,
-                height: height,
-            };
-        });
+  const apiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+  if (!apiUrl) {
+      console.error("WordPress API URL is not configured in .env.local");
+      return [];
+  }
+  const fetchUrl = `${apiUrl}/wp/v2/member`
+  try{
+      const res = await fetch(fetchUrl);
+      if (!res.ok) {
+          console.error(`Failed to fetch team members: ${res.status} ${res.statusText}`);
+          return [];
+      }
+      const data:WordPressPost[] = await res.json();
+      const teamMembers: TeamMemberItem[] = data.map((item) => {
+          const acfImageUrl = item.acf?.member_image?.url || "https://www.cribelab.org/wp-content/uploads/2025/02/placeholder-1.svg";
+          const width = item.acf?.member_image?.width || null;
+          const height = item.acf?.member_image?.height || null;
+          return {
+              id: item.id,
+              name: item.acf?.name || 'Unknown Member',
+              role: item.acf?.role || null,
+              image: acfImageUrl || null,
+              email: item.acf?.email || null,
+              research: item.acf?.research || null,
+              experience: item.acf?.experience || null,
+              is_featured: item.acf?.is_featured || false,
+              width: width,
+              height: height,
+          };
+      });
 
-        return teamMembers;
-    } catch (error) {
-        console.error("Error fetching or processing team members data:", error);
-        return [];
-    }
+      return teamMembers;
+  } catch (error) {
+      console.error("Error fetching or processing team members data:", error);
+      return [];
+  }
 }
 
 export interface MeanItem {

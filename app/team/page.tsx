@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getTeamMembersData, TeamMemberItem } from "@/lib/api";
 import styles from "./TeamGrid.module.css";
 
 const members = [
@@ -56,7 +57,12 @@ const members = [
 ];
 
 export default function TeamGridPage() {
+  const [members, setMembers] = useState<TeamMemberItem[]>([]);
   const [hovered, setHovered] = useState<number | null>(null);
+
+  useEffect(() => {
+    getTeamMembersData().then(setMembers);
+  }, []);
 
   return (
     <div className={styles.teamPage}>
@@ -64,13 +70,13 @@ export default function TeamGridPage() {
       <div className={styles.grid}>
         {members.map((m, idx) => (
           <div
-            key={m.name}
+            key={m.id}
             className={styles.avatarWrapper}
             onMouseEnter={() => setHovered(idx)}
             onMouseLeave={() => setHovered(null)}
           >
-            <img src={m.avatar} alt={m.name} className={styles.avatar} />
-            <div className={styles.name}>{m.name}<br />{m.role}</div>
+            <img src={m.image ?? ""} alt={m.name} className={styles.avatar} />
+            {/* <div className={styles.name}>{m.name}<br />{m.role}</div> */}
             {hovered === idx && (
               <div className={styles.card}>
                 <div className={styles.cardName}>{m.name}</div>
