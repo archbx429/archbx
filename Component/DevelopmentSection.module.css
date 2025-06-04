@@ -1,0 +1,114 @@
+.developmentSection {
+  width: 100%;
+  background: #000;
+  color: #fff;
+  padding: 60px 0 0 0;
+}
+
+.heading {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.subheading {
+  text-align: center;
+  color: #ccc;
+  font-size: 1rem;
+  margin-bottom: 48px;
+  letter-spacing: 1px;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  gap: 0; /* 无间隙 */
+  margin-bottom: 40px;
+}
+
+.card {
+  background: #000;
+  width: 420px;         /* 更大 */
+  min-height: 520px;    /* 更高 */
+  border-radius: 10px; /* 圆角，和图片一致或更大 */
+  padding: 48px 36px 36px 36px;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.3s;
+  position: relative;
+  border: none;
+}
+.card:hover {
+  background: #222; /* 浅灰色 */
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 240px;
+  background: #181818;
+  margin-bottom: 32px;
+  border-radius: 10px; /* 圆角，可根据需要调整数值 */
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.content {
+  color: #ccc;
+  font-size: 1.1rem;
+  margin-bottom: 32px;
+}
+
+.button {
+  margin-top: auto;
+  align-self: flex-start;
+  padding: 8px 20px;
+  border: 1px solid #fff;
+  border-radius: 24px;
+  background: transparent;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.button:hover {
+  background: #fff;
+  color: #000;
+}
+
+.arrow {
+  font-size: 1.1em;
+}
+
+.bottomButtonWrapper {
+  display: flex;
+  justify-content: center;
+  margin: 48px 0 0 0;
+}
+
+.bottomButton {
+  background: #fff;
+  color: #000;
+  font-size: 1.2rem;
+  padding: 16px 40px;
+  border-radius: 32px;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.bottomButton:hover {
+  background: #222;
+  color: #fff;
+}

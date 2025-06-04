@@ -55,10 +55,66 @@
   line-height: 1.7;
   color: #ededed; /* 描述为浅灰，更清晰 */
   margin-bottom: 32px;
+  white-space: pre-line; /* 新增：保留描述中的换行 */
 }
 
 .teamButton {
   margin-top: auto; /* 让按钮推到底部 */
+}
+
+/* 新增：底部按钮样式 */
+.bottomButtonWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 48px 0 0 0;
+}
+
+.bottomButtonGroup {
+  display: flex;
+  align-items: center;
+}
+
+.bottomButtonText {
+  background: #fff;
+  color: #000;
+  font-size: 2rem;
+  padding: 24px 48px;
+  border-radius: 48px 0 0 48px;
+  border: none;
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  font-weight: 400;
+  height: 96px;
+  /* 去除右边圆角，紧贴右侧按钮 */
+  margin-right: -1px; /* 防止边框重叠出现缝隙 */
+}
+
+.bottomButtonIcon {
+  background: #000;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 0 48px 48px 0;
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.bottomButtonIcon:hover {
+  background: #222;
+  border-color: #fff;
+}
+
+.arrowIcon {
+  width: 2.2em;
+  height: 2.2em;
 }
 
 /* 响应式调整：在小屏幕上，可以将布局改为垂直堆叠 */

@@ -2,6 +2,7 @@ import React from 'react'
 import { ResearchSection } from '@/Component/ResearchCard/ResearchDisplay';
 import { getResearchData, ResearchItem } from '@/lib/api';
 import TeamComponent from '@/Component/TeamComponent';
+import DevelopmentSection from '@/Component/DevelopmentSection';
 
 // 定义团队数据类型
 interface TeamApiData {
@@ -15,9 +16,12 @@ interface TeamApiData {
 // 获取团队数据的函数
 async function getTeamData(): Promise<TeamApiData> {
   return {
-    title: "OUR TEAM",                // 修改这里
-    description: "Team description",   // 修改这里
-    buttonText: "KNOW ABOUT US",      // 修改这里
+    title: "OUR TEAM",
+    description: `Mainly major in Parametric green building design research.
+· Building performance and thermal comfort
+· Climate Change and Urban Climate adaptability
+· Artificial intelligence and machine learning`,
+    buttonText: "KNOW ABOUT US",
     image: "https://www.cribelab.org/wp-content/uploads/2025/02/placeholder-1.svg",
     imagePlaceholderColor: "#eee",
   };
@@ -32,6 +36,8 @@ export default async function Page() {
     <div className="page-container" style={{ backgroundColor: 'black', minHeight: '100vh' }}>
       {/* 研究部分 */}
       <ResearchSection researchItems={researchItems} />
+
+<DevelopmentSection />
 
       {/* 团队部分 */}
       <div style={{ marginTop: 80 }}>
