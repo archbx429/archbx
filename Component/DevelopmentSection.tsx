@@ -22,8 +22,7 @@ export default function DevelopmentSection() {
     <section className={styles.developmentSection}>
       <h2 className={styles.heading}>DEVELOPMENT</h2>
       <p className={styles.subheading}>
-        Our Cutting-Edge Models Form The Search Foundation For High-Quality
-        Enterprise Search And RAG Systems
+        Main Content Main Contentmain Contentmain Contentmain Content
       </p>
       <div className={styles.grid}>
         {devItems.map((item, idx) => (
